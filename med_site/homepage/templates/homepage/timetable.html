@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Timetable</title>
+    <link rel="stylesheet" href="{%static 'css/timetable_style.css'%}">
+</head>
+<body>
+    <h1>Timetable</h1>
+    <button><a href="{%url 'dwlpdf'%}">Download as pdf</a></button>
+    <button><a href="{%url 'dwlcsv'%}">Download as csv</a></button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Doctor</th>
+                <th>Date&Time</th>
+                <th>diagnosis</th>
+                {%if perms.homepage.view_timetable%}
+                <th>change</th>
+                {%endif%}
+            </tr>
+        </thead>
+        <tbody>
+            {%for i in Tab%}
+                <tr>
+                    <td>{{i.customer.contact_id.sfc}}</td>
+                    <td>{{i.doctor.contact_id.sfc}}</td>
+                    <td>{{i.meetdate}}</td>
+                    <td>{{i.diagnosis}}</td>
+                    {%if perms.homepage.view_timetable%}
+                    <td><button><a href="{%url 'change_diganosis' i.id%}">Change</a></button></td>
+                    {%endif%}
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,88 @@
+$u: 1.25;
+$d: 14em;
+$p: .5em;
+$o: 1.25em;
+$l: 6px;
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+*, ::before { box-sizing: inherit; margin: 0 }
+
+html {
+	font: 100 #{$u*1em}/ 1.25 handlee,
+		z003, segoe script, comic sans ms, cursive;
+
+	@media (max-width: 360px) { font-size: 1em }
+	@media (max-width: 240px) { font-size: .75em }
+}
+
+body {
+	box-sizing: border-box;
+	display: grid;
+	grid-gap: $o;
+	grid-template-columns:
+		repeat(auto-fit, minmax($d, 1fr));
+	overflow-x: hidden;
+	padding: $p;
+	min-height: 100vh;
+	background:
+		linear-gradient(var(--ang, 185deg),
+				#3f44cc calc(50% - .5px), #fff calc(50% + .5px));
+
+	@media (min-width: $u*(2*$d + 2*$p + $o)) { --ang: 85deg }
+}
+
+article {
+	--c: #{mix(#fff, darkorange, 25%)};
+	--s0: calc(#{$o} + #{$l});
+	--s1: calc(#{$o} + #{$l} + #{$p});
+	place-self: center;
+	position: relative;
+	width: $d; height: $d;
+	border: solid 0 transparent;
+	border-width: 0 var(--s0) var(--s0) 0;
+	padding: var(--s1) $p $p var(--s1);
+	background: var(--c) padding-box;
+
+	&:nth-child(2) {
+		--c: #{invert(indigo)};
+		filter: invert(1)
+	}
+
+	&::before {
+		position: absolute;
+		top: 0; left: 0;
+		border: inherit;
+		border-width: $o 0 0 $o;
+		width: $d; height: $d;
+		box-shadow: inset 0 0 0 $l var(--c);
+		mix-blend-mode: difference;
+		pointer-events: none;
+		content: ''
+	}
+}
+
+h3 {
+	font-size: 1.5em;
+	font-weight: 900;
+	line-height: 1.75
+}
+
+.vars {
+    width: 80vw;
+	height: 100px;
+	border: 3px solid;
+	border-radius: 10px;
+	margin: 0 auto;
+	text-align: center;
+	font-size: 50px;
+	font-family: 'Montserrat', sans-serif;
+	text-decoration: none;
+	background: linear-gradient(to bottom left, #d913ebb7, #d913eb00);
+}
+
+.vars2 {
+    text-decoration: none;
+    color: #820707
+}
+

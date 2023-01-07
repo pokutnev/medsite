@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Doctors</title>
+    <link rel="stylesheet" href="{%static 'css/doc_style.css'%}">
+</head>
+<body>
+<!--    <form action="doctors" method="post">-->
+        {% csrf_token %}
+        {%if choose%}
+            <div class="vars">
+                <a class="vars2">{{choose}}</a>
+            </div>
+            {%for prof in profs%}
+                <div class="vars">
+                    <a href="{%url 'appointment' choose prof.id %}" class="vars2">{{prof.name}}</a>
+                </div>
+            {% endfor %}
+        {%else%}
+            {%for prof in profs%}
+                <div class="vars">
+                    <a href="{%url 'doctor' prof%}" class="vars2">{{prof}}</a>
+                </div>
+            {% endfor %}
+        {%endif%}
+<!--    </form>-->
+</body>
+</html>
